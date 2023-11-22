@@ -179,3 +179,22 @@ $('#search-btn').on('click', function (event) {
     }
 }); 
 
+// Click handler for city buttons to load that city's weather
+$(document).on("click", "button.city-btn", function (event) {
+    let clickedCity = $(this).text();
+    let foundCity = $.grep(pastCities, function (storedCity) {
+        return clickedCity === storedCity.city;
+    })
+    let queryURL = buildURLFromId(foundCity[0].id)
+    searchWeather(queryURL);
+});
+
+
+// load any cities in local storage into array
+loadCities();
+displayCities(pastCities);
+
+// Display weather for last searched city
+displayLastSearchedCity();
+
+});
