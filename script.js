@@ -160,3 +160,22 @@ function displayLastSearchedCity() {
     }
 }
 
+
+$('#search-btn').on('click', function (event) {
+    // Preventing the button from trying to submit the form
+    event.preventDefault();
+
+    // Retrieving and scrubbing the city from the inputs
+    let city = cityInput.val().trim();
+    city = city.replace(' ', '%20');
+
+    // Clear the input fields
+    cityInput.val('');
+
+    // Build the query url with the city and searchWeather
+    if (city) {
+        let queryURL = buildURLFromInputs(city);
+        searchWeather(queryURL);
+    }
+}); 
+
