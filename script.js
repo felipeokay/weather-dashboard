@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    // OpenWeather API
     const apiKey = '767baab1ba615005b7b57e268ed513fe';
 
     // Selectors for HTML elements to display weather information
@@ -18,7 +19,9 @@ $(document).ready(function () {
    // Store past searched cities
    let pastCities = [];
 
+   // Helper function to sort cities from https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
    function compare(a, b) {
+       // Use toUpperCase() to ignore character casing
        const cityA = a.city.toUpperCase();
        const cityB = b.city.toUpperCase();
 
@@ -30,6 +33,8 @@ $(document).ready(function () {
        }
        return comparison;
    }
+
+   // Local storage functions for past searched cities
 
     // Load events from local storage
     function loadCities() {
@@ -70,4 +75,16 @@ $(document).ready(function () {
         });
     }
     
-    
+   
+    function setUVIndexColor(uvi) {
+        if (uvi < 3) {
+            return 'green';
+        } else if (uvi >= 3 && uvi < 6) {
+            return 'yellow';
+        } else if (uvi >= 6 && uvi < 8) {
+            return 'orange';
+        } else if (uvi >= 8 && uvi < 11) {
+            return 'red';
+        } else return 'purple';
+    }
+
